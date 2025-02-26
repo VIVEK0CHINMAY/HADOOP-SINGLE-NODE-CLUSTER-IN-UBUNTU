@@ -1,15 +1,39 @@
 # HADOOP-SINGLE-NODE-CLUSTER-IN-UBUNTU
 
-### Step 1 : Install java jdk 8
-First of all you must install Java JDK 11 on your system. You can just type this command to install java jdk on your system.
+### Step 1 : Add user in ubuntu 
+- Login to asas user and open terminal
+- paste the below code and replace the <username> with your own name
 ~~~shell
-sudo apt install openjdk-8-jdk
+sudo adduser username
 ~~~
-To check it’s there cd /usr/lib/jvm
+- give user name again and set pass word and type yes
+- 
+### Step 2 : Loging into your Account
+- Now click on power button and switch user
+- Select the user that you created now and login to the user
 
-### Step 2 : Add this configuration on you bash file
+### Step 3 : Install java jdk 11
+First check for java version in your system 
+~~~shell
+java --version
+~~~
+If the output is 11 then go to Step 4
+or check out Javainstallation readme file 
+
+### Step 4 : Download the hadoop tar file 
+Run the below command to download ther hadoop tar file 
+~~~shell
+wget https://dlcdn.apache.org/hadoop/common/hadoop-3.4.1/hadoop-3.4.1.tar.gz
+~~~
+(Extract the tar file)
+~~~shell
+tar -zxvf ~/hadoop-3.4.1.tar.gz 
+~~~
+
+### Step 5 : Add this configuration on you bash file
+
 Now just open .bashrc file and paste these commands.
-to open use the below comand 
+to open use the below command 
 ~~~shell
 nano .bashrc
 ~~~
@@ -29,39 +53,37 @@ export HADOOP_STREAMING=$HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.4
 export HADOOP_LOG_DIR=$HADOOP_HOME/logs 
 export PDSH_RCMD_TYPE=ssh
 ~~~
-( ssh — secure shell — protocol used to securely connect to remote server/system — transfers data in encrypted form)
+press Ctrl+X , Ctrl+Y press enter
 
 now source the code so that the changes is made
-run this after pasting the above comand
+run this after pasting the above command
 ~~~shell
 source ~/.bashrc
 ~~~
-~~~shell
-sudo apt-get install ssh
-~~~
-now go to hadoop.apache.org website download the tar file
-(hadoop.apache.org — download tar file of hadoop.)
-~~~shell
-wget https://dlcdn.apache.org/hadoop/common/hadoop-3.4.1/hadoop-3.4.1.tar.gz
-~~~
-~~~shell
-tar -zxvf ~/hadoop-3.4.1.tar.gz 
-~~~
-(Extract the tar file)
+### Step 6 : Hadoop site setup
+
+Enter to hadoop folder 
+run:
 ~~~shell
 cd hadoop-3.4.1/etc/hadoop
 ~~~
 now open hadoop-env.sh
 ~~~shell
-sudo nano hadoop-env.sh
+nano hadoop-env.sh
 ~~~
+find for JAVA_HOME in script and paste the below line 
 ~~~shell
 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 
 ~~~
-Step 3 : Add this file in core-site.xml
-Now add this configuration in core-site.xml file.
+press Ctrl+X , Ctrl+Y press enter
 
-core-site.xml
+### Step 7 : Add this file in core-site.xml
+
+Now add this configuration in core-site.xml file.
+~~~shell
+nano core-site.xml
+~~~
+paste the below script in the place of <configuration> 
 ~~~shell
 <configuration> 
  <property> 
@@ -81,10 +103,14 @@ core-site.xml
  </property> 
 </configuration>
 ~~~
-Step 3 : Add this file in hdfs-site.xml
-Now add this configuration in hdfs-site.xml file.
+press Ctrl+X , Ctrl+Y press enter
 
-hdfs-site.xml
+### Step 8 : Add this file in hdfs-site.xml
+Now add this configuration in hdfs-site.xml file.
+~~~shell
+nano hdfs-site.xml
+~~~
+paste the below script in the place of <configuration> 
 ~~~ shell
 <configuration> 
  <property> 
@@ -93,11 +119,14 @@ hdfs-site.xml
  </property> 
 </configuration>
 ~~~
-Step 4: Add this file in mapred-site.xml
+press Ctrl+X , Ctrl+Y press enter
+
+### Step 9: Add this file in mapred-site.xml
 Now add this configuration in mapred-site.xml file.
-
-mapred-site.xml
-
+~~~shell
+nano mapred-site.xml
+~~~
+paste the below script in the place of <configuration> 
 ~~~shell
 <configuration> 
  <property> 
@@ -110,10 +139,14 @@ mapred-site.xml
  </property> 
 </configuration>
 ~~~
-Step 4: Add this file in yarn-site.xml
-Now add this configuration in yarn-site.xml file.
+press Ctrl+X , Ctrl+Y press enter
 
-yarn-site.xml
+### Step 10: Add this file in yarn-site.xml
+Now add this configuration in yarn-site.xml file.
+~~~shell
+nano yarn-site.xml
+~~~
+paste the below script in the place of <configuration>
 ~~~shell
 <configuration> 
  <property> 
@@ -127,9 +160,15 @@ yarn-site.xml
  </property> 
 </configuration>
 ~~~
+press Ctrl+X , Ctrl+Y press enter
+
+### Step 11: start the localhost
 ~~~shell
 ssh localhost
 ~~~
+it attempts to establish an SSH (Secure Shell) connection to your own machine (localhost).
+
+### Step 12: Generating authorized_keys 
 ~~~shell
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa 
 ~~~
@@ -142,15 +181,16 @@ chmod 0600 ~/.ssh/authorized_keys
 ~~~shell
 hadoop-3.4.1/bin/hdfs namenode -format
 ~~~
+It initializes the Hadoop file system by deleting old metadata and preparing a fresh NameNode storage.
 
-Step 5 : Start hadoop
+### Step 13 : Start hadoop
 To start
 
 ~~~shell
 start-all.sh
 ~~~
 (Start NameNode daemon and DataNode daemon) 
-localhost:9870
+
 
 ~~~shell
 stop-all.sh
