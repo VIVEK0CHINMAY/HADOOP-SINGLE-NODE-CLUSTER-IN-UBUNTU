@@ -1,5 +1,5 @@
 # 📌 Switching to Java 11 on Ubuntu
-
+# Login to asas account to do this change and after changes are done switch back to user you created to proceed with hadoop installation
 ## 🔹 Step 1: Check the Installed Java Version
 First, check your current Java version by running:
 ~~~shell
