@@ -191,7 +191,22 @@ start-all.sh
 ~~~
 (Start NameNode daemon and DataNode daemon) 
 
+### Step 14: Check the services running
+Run:
+~~~shell
+jps
+~~~
+it will show the services running 
 
+Now open these sites
+The NameNode user interface provides a comprehensive overview of the entire cluster
+[(http://localhost:9870](http://localhost:9870)
+The default port 9864 is used to access individual DataNodes directly from your browser:
+[http://localhost:9864](http://localhost:9864)
+The YARN Resource Manager is accessible on port 8088:
+[http://localhost:8088](http://localhost:8088)
+
+### Step 15 : Stop hadoop
 ~~~shell
 stop-all.sh
 ~~~
