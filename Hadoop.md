@@ -7,7 +7,7 @@
 sudo adduser username
 ~~~
 - give user name again and set pass word and type yes
-- 
+
 ### Step 2 : Loging into your Account
 - Now click on power button and switch user
 - Select the user that you created now and login to the user
@@ -18,7 +18,7 @@ First check for java version in your system
 java --version
 ~~~
 If the output is 11 then go to Step 4
-or check out Javainstallation readme file 
+or check out [Java_installation] readme file 
 
 ### Step 4 : Download the hadoop tar file 
 Run the below command to download ther hadoop tar file 
@@ -83,7 +83,7 @@ Now add this configuration in core-site.xml file.
 ~~~shell
 nano core-site.xml
 ~~~
-paste the below script in the place of <configuration> 
+paste the below script in the place of configuration
 ~~~shell
 <configuration> 
  <property> 
@@ -110,7 +110,7 @@ Now add this configuration in hdfs-site.xml file.
 ~~~shell
 nano hdfs-site.xml
 ~~~
-paste the below script in the place of <configuration> 
+paste the below script in the place of configuration
 ~~~ shell
 <configuration> 
  <property> 
@@ -126,7 +126,7 @@ Now add this configuration in mapred-site.xml file.
 ~~~shell
 nano mapred-site.xml
 ~~~
-paste the below script in the place of <configuration> 
+paste the below script in the place of configuration
 ~~~shell
 <configuration> 
  <property> 
@@ -146,7 +146,7 @@ Now add this configuration in yarn-site.xml file.
 ~~~shell
 nano yarn-site.xml
 ~~~
-paste the below script in the place of <configuration>
+paste the below script in the place of configuration
 ~~~shell
 <configuration> 
  <property> 
