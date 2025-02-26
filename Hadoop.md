@@ -18,7 +18,7 @@ First check for java version in your system
 java --version
 ~~~
 If the output is 11 then go to Step 4
-or check out [Java_installation] readme file 
+or check out [Java_installation](HADOOP-SINGLE-NODE-CLUSTER-IN-UBUNTU/java_installation) readme file 
 
 ### Step 4 : Download the hadoop tar file 
 Run the below command to download ther hadoop tar file 
