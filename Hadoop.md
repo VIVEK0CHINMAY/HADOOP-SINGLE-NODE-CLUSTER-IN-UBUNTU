@@ -1,7 +1,7 @@
 # 🚀 HADOOP SINGLE NODE CLUSTER SETUP IN UBUNTU
 
 ## ✅ Step 1: Add a User in Ubuntu 👤
-- Login as a user and open the terminal.
+- Login to asas and open the terminal.
 - Paste the below code and replace `<username>` with your own name:
   
   ```shell
