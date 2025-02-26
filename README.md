@@ -1,5 +1,5 @@
 # HADOOP-SINGLE-NODE-CLUSTER-IN-UBUNTU
-~~~ console
+~~~ shell
 sudo apt getupdate
 ~~~
 
