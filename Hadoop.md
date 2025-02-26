@@ -200,7 +200,9 @@ it will show the services running
 
 Now open these sites
 The NameNode user interface provides a comprehensive overview of the entire cluster
+~~~shell
 [(http://localhost:9870](http://localhost:9870)
+~~~
 The default port 9864 is used to access individual DataNodes directly from your browser:
 [http://localhost:9864](http://localhost:9864)
 The YARN Resource Manager is accessible on port 8088:
