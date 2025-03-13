@@ -9,7 +9,7 @@ Starts all Hadoop services.
 
 #### Syntax:
 ```bash
-sbin/start-all.sh
+start-all.sh
 ```
 
 ### Check Running Hadoop Services - `jps`
