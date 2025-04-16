@@ -8,7 +8,6 @@ This guide walks you through the **complete setup of a Word Count** MapReduce jo
 
 ### 1️⃣ Create the `mapper.py` File
 ```bash
-cd Documents/
 touch mapper.py
 ```
 
