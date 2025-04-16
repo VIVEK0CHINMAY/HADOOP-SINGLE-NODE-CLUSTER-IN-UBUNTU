@@ -1,82 +1,112 @@
-# word count
-# mapper.py
+# 📊 Word Count Using Hadoop Streaming
 
-~~~#!/usr/bin/env python2
- 
+This guide walks you through the **complete setup of a Word Count** MapReduce job using **Hadoop Streaming** and **Python scripts**.
 
-#import sys because we need to read and write data to STDIN and STDOUT 
-import sys 
+---
 
-#reading entire line from STDIN (standard input) 
-for line in sys.stdin: 
-	# to remove leading and trailing whitespace 
-	line = line.strip() 
-	# split the line into words 
-	words = line.split() 
-	
-	# we are looping over the words array and printing the word 
-	# with the count of 1 to the STDOUT 
-	for word in words: 
-		# write the results to STDOUT (standard output); 
-		# what we output here will be the input for the 
-		# Reduce step, i.e. the input for reducer.py 
-		print '%s\t%s' % (word, 1) 
-~~~
+## 📂 Step 1: Create the Required Files
 
-# reducer.py
+### 1️⃣ Create the `mapper.py` File
+```bash
+cd Documents/
+touch mapper.py
+```
 
-~~~#!/usr/bin/env python2 
+### 📝 Code for `mapper.py`
+```python
+import sys
 
-from operator import itemgetter 
-import sys 
+for line in sys.stdin:
+    line = line.strip()
+    words = line.split()
+    for word in words:
+        print('%s\t%s' % (word, 1))
+```
+
+### 🔐 Set Execute Permission
+```bash
+chmod +x mapper.py
+```
+
+---
+
+### 2️⃣ Create the `reducer.py` File
+```bash
+touch reducer.py
+```
+
+### 📝 Code for `reducer.py`
+```python
+from operator import itemgetter
+import sys
 
 current_word = None
 current_count = 0
 word = None
 
-#read the entire line from STDIN 
-for line in sys.stdin: 
-	# remove leading and trailing whitespace 
-	line = line.strip() 
-	# splitting the data on the basis of tab we have provided in mapper.py 
-	word, count = line.split('\t', 1) 
-	# convert count (currently a string) to int 
-	try: 
-		count = int(count) 
-	except ValueError: 
-		# count was not a number, so silently 
-		# ignore/discard this line 
-		continue
+for line in sys.stdin:
+    line = line.strip()
+    word, count = line.split('\t', 1)
+    try:
+        count = int(count)
+    except ValueError:
+        continue
 
-	# this IF-switch only works because Hadoop sorts map output 
-	# by key (here: word) before it is passed to the reducer 
-	if current_word == word: 
-		current_count += count 
-	else: 
-		if current_word: 
-			# write result to STDOUT 
-			print '%s\t%s' % (current_word, current_count) 
-		current_count = count 
-		current_word = word 
+    if current_word == word:
+        current_count += count
+    else:
+        if current_word:
+            print('%s\t%s' % (current_word, current_count))
+        current_count = count
+        current_word = word
 
-#do not forget to output the last word if needed! 
-if current_word == word: ~~~
-	print '%s\t%s' % (current_word, current_count)
-~~~
-cd Documents/
------------------------------                                  
-touch mapper.py                       
-touch reducer.py 
------------------------------               
+if current_word == word:
+    print('%s\t%s' % (current_word, current_count))
+```
+
+### 🔐 Set Execute Permission
+```bash
+chmod +x reducer.py
+```
+
+---
+
+## 📤 Step 2: Prepare Input Data
+
+### 🗂️ Create and Upload Input File
+```bash
 hdfs dfs -mkdir /wordcount
-------------------
 hdfs dfs -copyFromLocal /home/vivan/input.txt /wordcount
------------------------------
+```
+
+---
+
+## 🚀 Step 3: Run Hadoop Streaming Job
+
+### 💻 Execute MapReduce Job with Python Scripts
+```bash
 hadoop jar /home/vivan/hadoop-3.4.1/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar \
     -input /wordcount/input.txt \
     -output /wordcount/output \
-    -mapper "python2 /home/vivan/mapper.py" \
-    -reducer "python2 /home/vivan/reducer.py"
------------------------------
+    -mapper "/home/vivan/mapper.py" \
+    -reducer "/home/vivan/reducer.py"
+```
+
+> ⚠️ Ensure the path to the Hadoop Streaming JAR file and your Python scripts are correct.
+
+---
+
+## 📥 Step 4: View Output Results
+
+### 📄 Display Word Count Output
+```bash
 hdfs dfs -cat /wordcount/output/part-00000
------------------------------
+```
+
+---
+
+## ✅ You're Done!
+You've now successfully implemented Word Count using Hadoop Streaming with custom Python scripts. 🎉
+
+Need to try with other datasets or expand it? Just ask!
+
