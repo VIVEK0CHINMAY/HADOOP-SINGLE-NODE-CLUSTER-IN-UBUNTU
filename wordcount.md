@@ -1,6 +1,6 @@
-word count
-mapper.py
-------------------
+# word count
+# mapper.py
+
 ~~~#!/usr/bin/env python2
  
 
@@ -20,11 +20,11 @@ for line in sys.stdin:
 		# write the results to STDOUT (standard output); 
 		# what we output here will be the input for the 
 		# Reduce step, i.e. the input for reducer.py 
-		print '%s\t%s' % (word, 1) ~~~
+		print '%s\t%s' % (word, 1) 
+~~~
 
-----------------------------
-reducer.py
-----------------------------
+# reducer.py
+
 ~~~#!/usr/bin/env python2 
 
 from operator import itemgetter 
