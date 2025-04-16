@@ -11,7 +11,7 @@ This guide walks through **finding the coldest days** from a weather dataset usi
 nano map_weather.py
 ```
 
-### 📝 Code for `mapweh.py`
+### 📝 Code for `map_weather.py`
 ```python
 #!/usr/bin/env python2
 import sys
@@ -45,7 +45,7 @@ chmod +x map_weather.py
 nano red_weather.py
 ```
 
-### 📝 Code for `redweh.py`
+### 📝 Code for `red_weather.py`
 ```python
 #!/usr/bin/env python2
 import sys
