@@ -69,6 +69,7 @@ touch mapper.py
 touch reducer.py 
 -----------------------------               
 hdfs dfs -mkdir /wordcount
+------------------
 hdfs dfs -copyFromLocal /home/vivan/input.txt /wordcount
 -----------------------------
 hadoop jar /home/vivan/hadoop-3.4.1/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar \
