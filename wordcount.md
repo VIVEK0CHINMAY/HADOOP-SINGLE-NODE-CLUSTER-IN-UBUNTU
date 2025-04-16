@@ -62,3 +62,20 @@ for line in sys.stdin:
 #do not forget to output the last word if needed! 
 if current_word == word: ~~~
 	print '%s\t%s' % (current_word, current_count)
+~~~
+cd Documents/
+-----------------------------                                  
+touch mapper.py                       
+touch reducer.py 
+-----------------------------               
+hdfs dfs -mkdir /wordcount
+hdfs dfs -copyFromLocal /home/vivan/input.txt /wordcount
+-----------------------------
+hadoop jar /home/vivan/hadoop-3.4.1/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar \
+    -input /wordcount/input.txt \
+    -output /wordcount/output \
+    -mapper "python2 /home/vivan/mapper.py" \
+    -reducer "python2 /home/vivan/reducer.py"
+-----------------------------
+hdfs dfs -cat /wordcount/output/part-00000
+-----------------------------
