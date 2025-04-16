@@ -42,7 +42,7 @@ chmod +x map_titanic.py
 
 ---
 
-### 2️⃣ Create the `redtit.py` File
+### 2️⃣ Create the `red_titanic.py` File
 ```bash
 nano red_titanic.py
 ```
