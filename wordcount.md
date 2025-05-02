@@ -8,11 +8,12 @@ This guide walks you through the **complete setup of a Word Count** MapReduce jo
 
 ### 1️⃣ Create the `mapper.py` File
 ```bash
-touch mapper.py
+nano mapper.py
 ```
 
 ### 📝 Code for `mapper.py`
 ```python
+#!/usr/bin/env python2
 import sys
 
 for line in sys.stdin:
@@ -31,11 +32,12 @@ chmod +x mapper.py
 
 ### 2️⃣ Create the `reducer.py` File
 ```bash
-touch reducer.py
+nano reducer.py
 ```
 
 ### 📝 Code for `reducer.py`
 ```python
+#!/usr/bin/env python2
 from operator import itemgetter
 import sys
 
